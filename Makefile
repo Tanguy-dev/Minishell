@@ -25,6 +25,7 @@ NAME	=	minishell
 # brew install readline if not installed
 # include readline lib in brew
 # compile with readline lib
+# YESSS
 
 %.o: %.c
 		@printf "\033[0;34mGenerating minishell : %-33.33s\r" $@
