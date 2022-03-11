@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 16:51:49 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/10 12:54:39 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/11 10:23:56 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,7 @@ int	check_line(t_mini *mini, t_token *token)
 char	*test1(t_mini *mini)
 {
 	if (mini->ret && mini->ret != 126)
-	{
-		rl_on_new_line();
-		rl_redisplay();
 		return (ERROR_PROMPT);
-	}
 	return (PROMPT);
 }
 

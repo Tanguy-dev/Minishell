@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 16:05:29 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/09 16:30:42 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/11 11:06:15 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	quote2(char *line, int nb, int i)
 	{
 		if (nbr == 0 && line[i] == '\'' && nbr2 == 0)
 			nbr = 1;
-		else if (line[i] == '\'' && line[i - 1] == '\\' && nbr == 1)
-			;
+		// else if (line[i] == '\'' && nbr == 1)
+		// 	;
 		else if (nbr == 1 && line[i] == '\'')
 			nbr = 0;
 		else if (nbr2 == 0 && line[i] == '\"' && nbr == 0)
@@ -77,7 +77,7 @@ int	check_quote(t_mini *mini, char *line)
 	}	
 	if (quote(line, 2147483647))
 	{
-		if (!check_echo(line) && quote2(line, ft_strlen(line) + 2, 0))
+		if (!check_echo(line) && quote2(line, ft_strlen(line) + 2, 0) == 0)
 			return (0);
 		ft_putendl_fd("minishell: syntax error open quotes", STDERR);
 		ft_memdel(line);
@@ -97,8 +97,26 @@ int	tk(char *line, int i)
 	return (0);
 }
 
-char	token_test(char c, int *i)
+
+char	token_test(char c, int *i, char *line)
 {
+	// int	j;
+	// int	k;
+
+	// j = 0;
+	// while (line[*i] && j < *i)
+	// {
+	// 	if (line[j] == '\'' && k == 0)
+	// 		k = 1;
+	// 	else if (line[j] == '\'' && k == 1)
+	// 		k = 0;
+	// 	j++;
+	// }
+	// if (k == 1)
+	// {
+	// 	return (' ');
+	// }
+	(void)line;
 	c = ' ';
 	(*i)++;
 	return (c);

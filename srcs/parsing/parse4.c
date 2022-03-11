@@ -6,11 +6,30 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 20:10:42 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/05 07:42:38 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/11 11:28:46 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	quote_check(char *line, int i)
+{
+	int	j;
+	int	k;
+
+	j = 0;
+	while (line[i] && j <= i)
+	{
+		if (line[j] == '\'' && k == 0)
+			k = 1;
+		else if (line[j] == '\'' && k == 1)
+			k = 0;
+		j++;
+	}
+	if (k == 1)
+		return (0);
+	return (1);
+}
 
 static char	*echo_env(char *line, char *test)
 {
@@ -24,7 +43,7 @@ static char	*echo_env(char *line, char *test)
 		k++;
 	while (line[k])
 	{
-		if (line[k] == '$')
+		if (line[k] == '$' && quote_check(line, k))
 		{
 			k++;
 			while (line[k] != ' ' && ft_isalnum(line[k]))
@@ -37,7 +56,7 @@ static char	*echo_env(char *line, char *test)
 		}
 		k++;
 	}
-	return (NULL);
+	return (test);
 }
 
 char	find_lim2(t_env *env, char *line, t_mini *mini, int i)

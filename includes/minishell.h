@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:35:33 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/09 15:42:04 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/11 11:39:19 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ char			find_lim2(t_env *env, char *line, t_mini *mini, int i);
 char			*lim_test(char *new, int j, char *line);
 char			*line2(char *line, char *test, int i, int j);
 char			dollar(char *line, int i, t_mini *mini);
+int				quote_check(char *line, int i);
 /*
 ** TOKEN
 */
@@ -133,7 +134,7 @@ int				its_pipe(t_token *token);
 t_token			*next_sep(t_token *token, int skip);
 t_token			*prev_sep(t_token *token, int skip);
 int				tk(char *line, int i);
-char			token_test(char c, int *i);
+char			token_test(char c, int *i, char *line);
 /*
 ** ENV
 */
