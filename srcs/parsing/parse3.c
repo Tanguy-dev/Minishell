@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 16:05:29 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/11 11:06:15 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/11 12:33:37 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,22 +100,6 @@ int	tk(char *line, int i)
 
 char	token_test(char c, int *i, char *line)
 {
-	// int	j;
-	// int	k;
-
-	// j = 0;
-	// while (line[*i] && j < *i)
-	// {
-	// 	if (line[j] == '\'' && k == 0)
-	// 		k = 1;
-	// 	else if (line[j] == '\'' && k == 1)
-	// 		k = 0;
-	// 	j++;
-	// }
-	// if (k == 1)
-	// {
-	// 	return (' ');
-	// }
 	(void)line;
 	c = ' ';
 	(*i)++;
