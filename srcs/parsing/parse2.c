@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 12:44:09 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/11 11:44:18 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/11 12:45:10 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ char	*find_lim(char *line, t_mini *mini, t_env *env)
 	while (new && line[i])
 	{
 		if (quote(line, i) != 1 && line[i] == '$' && i && line[i - 1] != '\\')
+		{
 			new[j++] = dollar(line, i++, mini);
+		}
 		else if (quote(line, i) == 0 && is_sep(i, line))
 		{
 			new[j++] = ' ';

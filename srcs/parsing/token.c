@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 12:46:00 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/11 11:06:00 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/11 12:33:48 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_token	*next_token(char *line, int *i)
 		else if (c != ' ' && line[*i] == c)
 		{
 			c = token_test(c, i, line);
-			// ft_putchar(token->str[j - 2]);
+			// ft_putstr("D");
 		}
 		else if (line[*i] == '\\' && remove_backk(line) && (*i)++)
 		{

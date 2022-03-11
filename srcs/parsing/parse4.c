@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 20:10:42 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/11 11:28:46 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/11 12:40:47 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,17 @@ static char	*echo_env(char *line, char *test)
 	{
 		if (line[k] == '$' && quote_check(line, k))
 		{
-			k++;
-			while (line[k] != ' ' && ft_isalnum(line[k]))
+			if (line[k + 1] != '$')
 			{
-				test[j++] = line[k++];
+				k++;
+				while (line[k] != ' ' && ft_isalnum(line[k]))
+				{
+					test[j++] = line[k++];
+				}
+				test[j++] = '=';
+				test[j] = '\0';
+				return (test);
 			}
-			test[j++] = '=';
-			test[j] = '\0';
-			return (test);
 		}
 		k++;
 	}
@@ -65,7 +68,9 @@ char	find_lim2(t_env *env, char *line, t_mini *mini, int i)
 
 	test = NULL;
 	if (ft_strncmp(line, "echo", 4) == 0)
+	{
 		test = echo_env(line, test);
+	}
 	else
 		test = line2(line, test, 1, 0);
 	while (env && env->value)
