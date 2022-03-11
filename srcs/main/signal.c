@@ -6,11 +6,12 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 18:05:05 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/11 11:22:45 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/11 15:06:11 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "../../../../.brew/opt/readline/include/readline/readline.h"
 
 void	sig_quit(int a)
 {
@@ -32,11 +33,13 @@ void	sig_quit(int a)
 void	sig_int(int a)
 {
 	(void)a;
-	rl_on_new_line();
-	rl_redisplay();
 	if (g_sig.pid == 0)
 	{
-		ft_putstr_fd("\b\b\n\033[0;32m\033[1m👎 Minishell : \033[0m", STDERR);
+//		ft_putstr_fd("\b\b\n\033[0;32m\033[1m👎 Minishell : \033[0m", STDERR);
+		printf("\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
 		g_sig.exit_status = 1;
 	}
 	else

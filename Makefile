@@ -6,6 +6,7 @@ ENV			=	env env_sort get_env
 UTILS		=	free type fd
 EXEC		=	bin bin2 exec builtins
 BUILTINS	=	echo cd cd_2 pwd export export2 env exit unset
+READL_PATH	=	-L$(shell brew --prefix readline)/lib
 
 SRCS		=	$(addsuffix .c, $(addprefix main/, $(MAIN)))	\
 				$(addsuffix .c, $(addprefix parsing/, $(PARSE)))	\
@@ -20,6 +21,11 @@ CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror -I includes
 NAME	=	minishell
 
+# install homebrew if not installed (>> find repo in sgoinfre)
+# brew install readline if not installed
+# include readline lib in brew
+# compile with readline lib
+
 %.o: %.c
 		@printf "\033[0;34mGenerating minishell : %-33.33s\r" $@
 		@${CC} ${CFLAGS} -c $< -o $@
@@ -30,7 +36,7 @@ libft:
 		@make -C libft/
 
 $(NAME):	$(OBJS)
-		@$(CC) -fsanitize=address -o $@ $^ -Llibft -lft -lreadline
+		@$(CC) -fsanitize=address -o $@ $^ -Llibft -lft $(READL_PATH) -lreadline
 		@echo "\n\n\033[0;32mCompiling minishell"
 
 clean: 

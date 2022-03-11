@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:35:33 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/11 11:39:19 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/11 14:57:18 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@
 # include <term.h>
 # include <termios.h>
 # include <sys/syslimits.h>
-# include <readline/readline.h>
-# include <readline/history.h>
+/*# include <readline/readline.h>*/
+/*# include <readline/history.h>*/
 # include "../libft/includes/libft.h"
-
+# include "../../../.brew/opt/readline/include/readline/readline.h"
+# include "../../../.brew/opt/readline/include/readline/rlstdc.h"
+# include "../../../.brew/opt/readline/include/readline/history.h"
 # define PROMPT "👍 \033[0;32m\033[1mMinishell : \033[0m"
 # define ERROR_PROMPT "👎 \033[0;32m\033[1mMinishell : \033[0m"
 
