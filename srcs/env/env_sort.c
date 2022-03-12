@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 22:39:22 by thamon            #+#    #+#             */
-/*   Updated: 2022/02/02 18:52:12 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/12 20:46:02 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,14 @@ void	sort_env(char **tabe, int env_len)
 	}
 }
 
-void	show_env(t_env *env)
+/* add export print to show_env */
+
+void	show_env(t_env *env, t_env *export, char is_export)
 {
 	int		i;
 	char	**tabe;
 	char	*str_env;
+	t_env	*tmp_export;
 
 	str_env = env_on_str(env);
 	tabe = ft_split(str_env, '\n');
@@ -51,8 +54,17 @@ void	show_env(t_env *env)
 	i = 0;
 	while (tabe[i])
 	{
+		if (is_export == 'y')
+			ft_putstr("declare -x ");
 		ft_putendl(tabe[i]);
 		i++;
+	}
+	tmp_export = export;
+	while (tmp_export != NULL && is_export == 'y')
+	{
+		printf("declare -x ");
+		printf("%s\n", tmp_export->value);
+		tmp_export = export->next;
 	}
 	free_array(tabe);
 }

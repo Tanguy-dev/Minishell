@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:39:12 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/10 12:03:37 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/12 20:12:02 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,28 @@ int	env_add(char *value, t_env *env)
 	tmp = env->next;
 	env->next = new;
 	new->next = tmp;
+	return (0);
+}
+
+/* new function to add var that won't be in the env list, in the export list */
+
+int export_add(char *value, t_env *export)
+{
+	t_env *new_export;
+	t_env *tmp;
+
+	if (!export)
+		set_export(mini, value);
+	else
+	{
+		new_export = malloc(sizeof(t_env));
+//		if (new_export == NULL)
+//			return (1);
+		new_export->value = ft_strdup(value);
+		tmp = export->next;
+		export->next = new_export;
+		new_export->next = NULL;
+	}
 	return (0);
 }
 
@@ -84,7 +106,7 @@ char	*name_env(char *dest, char *src)
 	return (dest);
 }
 
-int	mini_export(char **args, t_env *env)
+int	mini_export(char **args, t_env *env, t_env *export, char is_export)
 {
 	int		new_env;
 	int		error;
@@ -92,7 +114,7 @@ int	mini_export(char **args, t_env *env)
 
 	new_env = 0;
 	arg = NULL;
-	if (exa(args, env))
+	if (exa(args, env, export, is_export))
 		return (0);
 	else
 	{
@@ -108,6 +130,9 @@ int	mini_export(char **args, t_env *env)
 			new_env = in_env(arg, env);
 		if (new_env == 0 && error == 1)
 			env_add(arg, env);
+/* if var has no '=', add it to export only */
+		if (new_env == 1)
+			export_add(arg, export);
 	}
 	return (0);
 }

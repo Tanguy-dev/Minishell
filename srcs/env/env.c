@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 16:42:07 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/11 13:46:25 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/12 20:35:31 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,19 @@ int	set_env(t_mini *mini, char **env)
 		env1 = env2;
 		i++;
 	}
+	return (0);
+}
+
+/* initialize export linked list */
+
+int set_export(char *value)
+{
+	t_env	*export;
+
+	export = malloc(sizeof(t_env));
+	export->value = ft_strdup(value);
+	export->next = NULL;
+	mini->export = export;
 	return (0);
 }
 
