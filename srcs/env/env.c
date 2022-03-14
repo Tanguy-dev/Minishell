@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 16:42:07 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/12 20:35:31 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/14 15:57:35 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,17 @@ int	set_env(t_mini *mini, char **env)
 
 /* initialize export linked list */
 
-int set_export(char *value)
+t_env *set_export(char *value)
 {
-	t_env	*export;
+	t_env	*new_export;
 
-	export = malloc(sizeof(t_env));
-	export->value = ft_strdup(value);
-	export->next = NULL;
-	mini->export = export;
-	return (0);
+	new_export = malloc(sizeof(t_env));
+	if (value == NULL)
+		new_export->value = NULL;
+	else
+		new_export->value = ft_strdup(value);
+	new_export->next = NULL;
+	return (new_export);
 }
 
 char	*check_env(char *line)

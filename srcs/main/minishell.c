@@ -6,11 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 12:46:05 by thamon            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/03/14 11:25:09 by thamon           ###   ########.fr       */
-=======
-/*   Updated: 2022/03/12 19:34:16 by jusaint-         ###   ########.fr       */
->>>>>>> export
+/*   Updated: 2022/03/14 16:03:17 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +85,8 @@ int	main(int ac, char **av, char **env)
 	mini.out = dup(STDOUT);
 	reset_fd(&mini);
 	set_env(&mini, env);
+	mini.export = malloc(sizeof(t_env*));
+	mini.export = NULL;
 	while (mini.exit == 0)
 	{
 		ft_bzero(&g_sig, sizeof(t_sig));
