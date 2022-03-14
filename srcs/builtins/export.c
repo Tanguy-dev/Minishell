@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:39:12 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/14 17:03:03 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:11:47 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,11 @@ int export_add(char *value, t_env *export)
 	t_env *new_export;
 	t_env *tmp;
 
-	if (export == NULL)
-		export = set_export(value);
+	if (export->value == NULL)
+		export->value = ft_strdup(value);
 	else
 	{
 		new_export = malloc(sizeof(t_env));
-//		if (new_export == NULL)
-//			return (1);
 		new_export->value = ft_strdup(value);
 		while (export->next)
 			export = export->next;
