@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 20:10:42 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/11 13:33:22 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/14 17:42:39 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,26 @@ int	quote_check(char *line, int i)
 	return (1);
 }
 
-static char	*echo_env(char *line, char *test)
+static char	*echo_env(char *line, char *test, int i)
 {
 	int	k;
 	int	j;
+	int	space;
 
 	k = 0;
 	j = 0;
+	space = 0;
 	test = malloc(sizeof(char) + (ft_strlen(line) - 1));
+	while (line[k] && space != i)
+	{
+		k++;
+		if (line[k] == ' ')
+		{
+			ft_skip_space(line, &k);
+			// k--;
+			space++;
+		}
+	}
 	while (line[k])
 	{
 		if (line[k] == '$')
@@ -54,12 +66,15 @@ static char	*echo_env(char *line, char *test)
 			{
 				if (quote_check(line, k) == 0)
 					return (test);
-				k++;
-				while (line[k] != ' ' && ft_isalnum(line[k]))
-					test[j++] = line[k++];
-				test[j++] = '=';
-				test[j] = '\0';
-				return (test);
+				else
+				{
+					k++;
+					while (line[k] != ' ' && ft_isalnum(line[k]))
+						test[j++] = line[k++];
+					test[j++] = '=';
+					test[j] = '\0';
+					return (test);
+				}
 			}
 		}
 		k++;
@@ -70,11 +85,14 @@ static char	*echo_env(char *line, char *test)
 char	find_lim2(t_env *env, char *line, t_mini *mini, int i)
 {
 	char	*test;
+	int		j;
 
+	j = 0;
 	test = NULL;
+	mini->echo += 1;
 	if (ft_strncmp(line, "echo", 4) == 0)
 	{
-		test = echo_env(line, test);
+		test = echo_env(line, test, mini->echo);
 	}
 	else
 		test = line2(line, test, 1, 0);

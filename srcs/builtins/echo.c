@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:38:53 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/12 18:17:43 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/14 17:42:05 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int	mini_echo(char **args)
 		while (args[i])
 		{
 			ft_putstr_fd(args[i], STDOUT);
-			if (args[i + 1] && args[i][0] != '\0' && args[i + 1][0] != '$')
+			if (args[i + 1] && args[i][0] != '\0')
 				ft_putchar_fd(' ', STDOUT);
 			i++;
 		}

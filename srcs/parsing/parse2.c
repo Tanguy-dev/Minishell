@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 12:44:09 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/12 18:52:02 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/14 17:42:57 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ char	*find_lim(char *line, t_mini *mini, t_env *env)
 	new = malloc_lim(line);
 	i = 0;
 	j = 0;
+	mini->echo = 0;
 	while (new && line[i])
 	{
 		if (quote(line, i) != 1 && line[i] == '$' && i && line[i - 1] != '\\'

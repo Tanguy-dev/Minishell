@@ -6,11 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:35:33 by thamon            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/03/12 19:46:56 by thamon           ###   ########.fr       */
-=======
-/*   Updated: 2022/03/12 20:34:55 by jusaint-         ###   ########.fr       */
->>>>>>> export
+/*   Updated: 2022/03/14 17:44:07 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +97,7 @@ typedef struct s_mini
 	int					no_run;
 	int					end;
 	int					check;
+	int					echo;
 }				t_mini;
 
 typedef struct s_sig
