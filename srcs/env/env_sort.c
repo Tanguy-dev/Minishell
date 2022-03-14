@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 22:39:22 by thamon            #+#    #+#             */
-/*   Updated: 2022/02/02 18:52:12 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/14 11:23:44 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	show_env(t_env *env)
 	i = 0;
 	while (tabe[i])
 	{
+		ft_putstr("declare -x ");
 		ft_putendl(tabe[i]);
 		i++;
 	}

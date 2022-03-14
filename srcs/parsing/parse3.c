@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 16:05:29 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/11 12:33:37 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/12 18:20:25 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int	quote2(char *line, int nb, int i)
 	{
 		if (nbr == 0 && line[i] == '\'' && nbr2 == 0)
 			nbr = 1;
-		// else if (line[i] == '\'' && nbr == 1)
-		// 	;
 		else if (nbr == 1 && line[i] == '\'')
 			nbr = 0;
 		else if (nbr2 == 0 && line[i] == '\"' && nbr == 0)
@@ -96,7 +94,6 @@ int	tk(char *line, int i)
 		return (1);
 	return (0);
 }
-
 
 char	token_test(char c, int *i, char *line)
 {

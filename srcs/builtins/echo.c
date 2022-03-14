@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:38:53 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/10 12:17:26 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/12 18:17:43 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,30 @@ char	*remove_back(char *line)
 	return (line);
 }
 
+static int	echo_arg(char **args, int *i, int n_flags)
+{
+	int		j;
+
+	while (args[*i] && ft_strncmp("-n", args[*i], 2) == 0)
+	{
+		j = 1;
+		while (args[*i][j])
+		{
+			if (args[*i][j] != 'n' && args[*i][j] != '\0')
+			{
+				j = 999999999;
+				break ;
+			}
+			n_flags = 1;
+			j++;
+		}
+		if (j == 999999999)
+			break ;
+		(*i)++;
+	}
+	return (n_flags);
+}
+
 int	mini_echo(char **args)
 {
 	int		i;
@@ -94,11 +118,7 @@ int	mini_echo(char **args)
 	n_flags = 0;
 	if (ft_strarraylen(args) > 1)
 	{
-		while (args[i] && ft_strcmp("-n", args[i]) == 0)
-		{
-			n_flags = 1;
-			i++;
-		}
+		n_flags = echo_arg(args, &i, n_flags);
 		while (args[i])
 		{
 			ft_putstr_fd(args[i], STDOUT);

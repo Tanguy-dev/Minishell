@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:35:33 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/11 14:57:18 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/12 19:46:56 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,16 @@
 # include <term.h>
 # include <termios.h>
 # include <sys/syslimits.h>
-/*# include <readline/readline.h>*/
-/*# include <readline/history.h>*/
 # include "../libft/includes/libft.h"
-# include "../../../.brew/opt/readline/include/readline/readline.h"
+/* Pour Mac Ecole */
+/*# include "../../../.brew/opt/readline/include/readline/readline.h"
 # include "../../../.brew/opt/readline/include/readline/rlstdc.h"
-# include "../../../.brew/opt/readline/include/readline/history.h"
+# include "../../../.brew/opt/readline/include/readline/history.h" */
+/* Pour Mac Tanguy */
+# include "/opt/homebrew/Cellar/readline/8.1.2/include/readline/readline.h"
+# include "/opt/homebrew/Cellar/readline/8.1.2/include/readline/rlstdc.h"
+# include "/opt/homebrew/Cellar/readline/8.1.2/include/readline/history.h"
+
 # define PROMPT "👍 \033[0;32m\033[1mMinishell : \033[0m"
 # define ERROR_PROMPT "👎 \033[0;32m\033[1mMinishell : \033[0m"
 

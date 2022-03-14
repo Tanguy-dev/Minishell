@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:50:51 by thamon            #+#    #+#             */
-/*   Updated: 2022/02/09 11:32:06 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/12 18:52:22 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,14 @@ int	get_arg_len(int pos, char *arg, t_env *env, int ret)
 	i = ft_strlen(var_value);
 	ft_memdel(var_value);
 	return (i);
+}
+
+int	is_sep(int i, char *line)
+{
+	if (i > 0 && line[i - 1] == '\\' && ft_strchr("<>;|", line[i]))
+		return (0);
+	else if (ft_strchr("<>;|", line[i]) && quote(line, i) == 0)
+		return (1);
+	else
+		return (0);
 }

@@ -6,21 +6,11 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 12:44:09 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/11 13:47:44 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/12 18:52:02 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	is_sep(int i, char *line)
-{
-	if (i > 0 && line[i - 1] == '\\' && ft_strchr("<>;|", line[i]))
-		return (0);
-	else if (ft_strchr("<>;|", line[i]) && quote(line, i) == 0)
-		return (1);
-	else
-		return (0);
-}
 
 char	*malloc_lim(char *line)
 {
@@ -50,6 +40,18 @@ char	*line2(char *line, char *test, int i, int j)
 	return (test);
 }
 
+char	*find_limeeeeeee(char *new, int *j, int *i, char *line)
+{
+	if (new[*j - 1] != ' ')
+		new[(*j)++] = ' ';
+	new[(*j)++] = line[(*i)++];
+	if (quote(line, *i) == 0 && line[*i] == '>')
+		new[(*j)++] = line[(*i)++];
+	if (line[*i] != ' ')
+		new[(*j)++] = ' ';
+	return (new);
+}
+
 char	*find_lim(char *line, t_mini *mini, t_env *env)
 {
 	char	*new;
@@ -61,22 +63,13 @@ char	*find_lim(char *line, t_mini *mini, t_env *env)
 	j = 0;
 	while (new && line[i])
 	{
-		if (quote(line, i) != 1 && line[i] == '$' && i && line[i - 1] != '\\' && quote_check(line, i))
-		{
+		if (quote(line, i) != 1 && line[i] == '$' && i && line[i - 1] != '\\'
+			&& quote_check(line, i))
 			new[j++] = dollar(line, i++, mini);
-		}
 		else if (quote(line, i) == 0 && is_sep(i, line))
-		{
-			// new[j++] = ' ';
-			new[j++] = line[i++];
-			if (quote(line, i) == 0 && line[i] == '>')
-				new[j++] = line[i++];
-			// new[j++] = ' ';
-		}
+			new = find_limeeeeeee(new, &j, &i, line);
 		else if (line[i] == '$' && line[i - 1] != '\\')
-		{
 			new[j++] = find_lim2(env, line, mini, i++);
-		}
 		else
 			new[j++] = line[i++];
 	}
