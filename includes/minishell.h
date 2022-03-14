@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:35:33 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/14 17:44:07 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/14 17:45:45 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 # include <sys/syslimits.h>
 # include "../libft/includes/libft.h"
 /* Pour Mac Ecole */
-/*# include "../../../.brew/opt/readline/include/readline/readline.h"
-# include "../../../.brew/opt/readline/include/readline/rlstdc.h"
-# include "../../../.brew/opt/readline/include/readline/history.h" */
+// # include "../../../.brew/opt/readline/include/readline/readline.h"
+// # include "../../../.brew/opt/readline/include/readline/rlstdc.h"
+// # include "../../../.brew/opt/readline/include/readline/history.h"
 /* Pour Mac Tanguy */
 # include "/opt/homebrew/Cellar/readline/8.1.2/include/readline/readline.h"
 # include "/opt/homebrew/Cellar/readline/8.1.2/include/readline/rlstdc.h"
@@ -147,9 +147,9 @@ char			token_test(char c, int *i, char *line);
 ** ENV
 */
 int				set_env(t_mini *mini, char **env);
-int				set_export(char *value);
+t_env			*set_export(char *value);
 char			*env_on_str(t_env *env);
-void			show_env(t_env *env, t_env *export, char is_export);
+void			show_env(t_env *env, t_env *export);
 int				is_valid_env(char *env);
 char			*get_env_value(char *arg, t_env *env);
 int				env_char(int c);
@@ -188,9 +188,9 @@ int				mini_pwd(t_env *env);
 int				mini_echo(char **args);
 int				mini_env(t_env *env);
 int				mini_cd(char **args, t_env *env);
-int				mini_export(char **args, t_env *env, t_env *export, char is_export);
+int				mini_export(char **args, t_env *env, t_env *export);
 char			*ex_arg(char **args, char *arg);
-int				exa(char **args, t_env *env, t_env *export, char is_export);
+int				exa(char **args, t_env *env, t_env *export);
 int				mini_unset(char **args, t_mini *mini);
 char			*get_path(t_env *env, char *var, size_t len);
 char			*path2(char *env_path, t_env *env);

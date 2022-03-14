@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 06:50:04 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/12 20:10:47 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/14 14:27:49 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ char	*ex_arg(char **args, char *arg)
 
 /* added export to the exa */
 
-int	exa(char **args, t_env *env)
+int	exa(char **args, t_env *env, t_env *export)
 {
 	if (!args[1])
 	{
-		show_env(env, mini->export, is_export);
+		show_env(env, export);
 		return (1);
 	}
 	return (0);

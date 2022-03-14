@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 20:10:42 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/14 17:42:39 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/14 17:48:13 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ char	*lim_test(char *new, int j, char *line)
 
 char	dollar(char *line, int i, t_mini *mini)
 {
+	mini->echo += 1;
 	mini->check = 1;
 	return ((char)(-line[i++]));
 }

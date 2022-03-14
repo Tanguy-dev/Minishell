@@ -6,11 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 22:39:22 by thamon            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/03/14 11:23:44 by thamon           ###   ########.fr       */
-=======
-/*   Updated: 2022/03/12 20:46:02 by jusaint-         ###   ########.fr       */
->>>>>>> export
+/*   Updated: 2022/03/14 17:00:12 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +40,7 @@ void	sort_env(char **tabe, int env_len)
 
 /* add export print to show_env */
 
-void	show_env(t_env *env, t_env *export, char is_export)
+void	show_env(t_env *env, t_env *export)
 {
 	int		i;
 	char	**tabe;
@@ -58,21 +54,16 @@ void	show_env(t_env *env, t_env *export, char is_export)
 	i = 0;
 	while (tabe[i])
 	{
-<<<<<<< HEAD
 		ft_putstr("declare -x ");
-=======
-		if (is_export == 'y')
-			ft_putstr("declare -x ");
->>>>>>> export
 		ft_putendl(tabe[i]);
 		i++;
 	}
 	tmp_export = export;
-	while (tmp_export != NULL && is_export == 'y')
+	while (tmp_export != NULL)
 	{
 		printf("declare -x ");
 		printf("%s\n", tmp_export->value);
-		tmp_export = export->next;
+		tmp_export = tmp_export->next;
 	}
 	free_array(tabe);
 }
