@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 22:39:22 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/14 17:00:12 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/15 14:45:57 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	show_env(t_env *env, t_env *export)
 		i++;
 	}
 	tmp_export = export;
-	while (tmp_export != NULL)
+	while (tmp_export && tmp_export->value != NULL)
 	{
 		printf("declare -x ");
 		printf("%s\n", tmp_export->value);
