@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 12:44:09 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/14 17:42:57 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/15 19:28:12 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,9 @@ char	*find_lim(char *line, t_mini *mini, t_env *env)
 		else if (quote(line, i) == 0 && is_sep(i, line))
 			new = find_limeeeeeee(new, &j, &i, line);
 		else if (line[i] == '$' && line[i - 1] != '\\')
+		{
 			new[j++] = find_lim2(env, line, mini, i++);
+		}
 		else
 			new[j++] = line[i++];
 	}

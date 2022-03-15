@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:35:33 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/14 17:45:45 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/15 19:53:10 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ char			*lim_test(char *new, int j, char *line);
 char			*line2(char *line, char *test, int i, int j);
 char			dollar(char *line, int i, t_mini *mini);
 int				quote_check(char *line, int i);
+char			*echo_test(char *line, int k, int j, char *test);
 /*
 ** TOKEN
 */

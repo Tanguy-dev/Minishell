@@ -6,11 +6,37 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 23:28:58 by thamon            #+#    #+#             */
-/*   Updated: 2022/02/09 11:57:55 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/15 19:50:50 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*echo_test(char *line, int k, int j, char *test)
+{
+	while (line[k])
+	{
+		if (line[k] == '$')
+		{
+			if (line[k + 1] != '$')
+			{
+				if (quote_check(line, k) == 0)
+					return (test);
+				else
+				{
+					k++;
+					while (line[k] != ' ' && ft_isalnum(line[k]))
+						test[j++] = line[k++];
+					test[j++] = '=';
+					test[j] = '\0';
+					return (test);
+				}
+			}
+		}
+		k++;
+	}
+	return (test);
+}
 
 void	redir(t_mini *mini, t_token *token, int type)
 {

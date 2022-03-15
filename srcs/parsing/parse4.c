@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 20:10:42 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/14 17:48:13 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/15 19:50:40 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,35 +51,14 @@ static char	*echo_env(char *line, char *test, int i)
 	while (line[k] && space != i)
 	{
 		k++;
-		if (line[k] == ' ')
+		if (line[k] == ' ' || line[k] == '$')
 		{
-			ft_skip_space(line, &k);
-			// k--;
+			while (line[k] != '$')
+				k++;
 			space++;
 		}
 	}
-	while (line[k])
-	{
-		if (line[k] == '$')
-		{
-			if (line[k + 1] != '$')
-			{
-				if (quote_check(line, k) == 0)
-					return (test);
-				else
-				{
-					k++;
-					while (line[k] != ' ' && ft_isalnum(line[k]))
-						test[j++] = line[k++];
-					test[j++] = '=';
-					test[j] = '\0';
-					return (test);
-				}
-			}
-		}
-		k++;
-	}
-	return (test);
+	return (echo_test(line, k, j, test));
 }
 
 char	find_lim2(t_env *env, char *line, t_mini *mini, int i)
@@ -90,10 +69,9 @@ char	find_lim2(t_env *env, char *line, t_mini *mini, int i)
 	j = 0;
 	test = NULL;
 	mini->echo += 1;
+	mini->check = 1;
 	if (ft_strncmp(line, "echo", 4) == 0)
-	{
 		test = echo_env(line, test, mini->echo);
-	}
 	else
 		test = line2(line, test, 1, 0);
 	while (env && env->value)
@@ -107,7 +85,9 @@ char	find_lim2(t_env *env, char *line, t_mini *mini, int i)
 		env = env->next;
 	}
 	ft_memdel(test);
-	return (line[i++]);
+	if (quote_check(line, i))
+		return (-line[i]);
+	return (line[i]);
 }
 
 char	*lim_test(char *new, int j, char *line)
