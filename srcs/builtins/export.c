@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:39:12 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/14 18:11:47 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/15 17:54:25 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ char	*name_env(char *dest, char *src)
 	return (dest);
 }
 
+/*
 int	mini_export(char **args, t_env *env, t_env *export)
 {
 	int		new_env;
@@ -130,9 +131,68 @@ int	mini_export(char **args, t_env *env, t_env *export)
 			new_env = in_env(arg, env);
 		if (new_env == 0 && error == 1)
 			env_add(arg, env);
-/* if var has no '=', add it to export only */
+// if var has no '=', add it to export only
 		if (new_env == 1 && error == 2)
 			export_add(arg, export);
 	}
 	return (0);
 }
+*/
+
+int	check_double(char *arg, t_env *export)
+{
+	t_env *tmp;
+	char *cmp;
+
+	if (export == NULL || export->value == NULL || arg == NULL)
+		return (0);
+	tmp = export;
+	cmp = ft_strdup(arg);
+	while (tmp)
+	{
+		if (!strncmp(cmp, tmp->value, ft_strlen(tmp->value)))
+		{
+			free(cmp);
+			return (1);
+		}
+		if (tmp->next == NULL)
+			break;
+		tmp = tmp->next;
+	}
+	free(cmp);
+	return (0);
+}
+
+int	mini_export(char **args, t_env *env, t_env *export)
+{
+	int		new_env;
+	int		error;
+	char	*arg;
+	int		arg_nb;
+
+	new_env = 0;
+	arg = NULL;
+	arg_nb = 1;
+	if (exa(args, env, export))
+		return (0);
+	while (args[arg_nb])
+	{
+		error = is_valid_env(args[arg_nb]);
+		if (args[arg_nb][0] == '=')
+			error = -3;
+		if (error <= 0)
+			return (show_error(error, args[arg_nb]));
+		arg = ex_arg(args, arg, arg_nb);
+		if (error == 2)
+			new_env = 1;
+		else
+			new_env = in_env(arg, env);
+		if (new_env == 0 && error == 1)
+			env_add(arg, env);
+		if (new_env == 1 && error == 2 && check_double(arg, export) == 0)
+			export_add(arg, export);
+		arg_nb++;
+	}
+	return (0);
+}
+

@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:39:25 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/15 15:38:32 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/15 18:35:24 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void	free_export(t_mini *mini, t_env *export)
 	ft_memdel(export);
 }
 
+// this shit is too long
 int	unset_export(char **args, t_mini *mini, int arg_nb)
 {
 	t_env	*tmp;
@@ -65,18 +66,19 @@ int	unset_export(char **args, t_mini *mini, int arg_nb)
 		free_export(mini, export);
 		return (0);
 	}
-	while (export && export->value != NULL)
+	while (export && export->next && export->value != NULL)
 	{
-		if (!ft_strncmp(args[arg_nb], export->value, ft_strlen(args[arg_nb])))
+		if (!ft_strncmp(args[arg_nb], export->next->value, ft_strlen(args[arg_nb])))
 		{
-			if (export->next == NULL)
+			if (export->next->next == NULL)
 			{
-				free_export(mini, export);
+				free_export(mini, export->next);
+				export->next = NULL;
 				return (0);
 			}
-			tmp = export->next;
-			free_export(mini, export);
-			export = tmp;
+			tmp = export->next->next;
+			free_export(mini, export->next);
+			export->next = tmp;
 		}
 		if (export->next == NULL)
 			break;
@@ -96,24 +98,29 @@ int	mini_unset(char **args, t_mini *mini)
 	arg_nb = 1;
 	if (!(args[1]))
 		return (0);
-	if (!ft_strncmp(args[1], env->value, env_s(env->value)))
+	while (args[arg_nb])
 	{
-		if (env->next)
-			mini->env = env->next;
-		free_envv(mini, env);
-		return (0);
-	}
-	while (env && env->next)
-	{
-		if (!ft_strncmp(args[1], env->next->value, env_s(env->next->value)))
+		// make funcc for unset_env
+		if (!ft_strncmp(args[arg_nb], env->value, env_s(env->value)))
 		{
-			tmp = env->next->next;
-			free_envv(mini, env->next);
-			env->next = tmp;
+			if (env->next)
+				mini->env = env->next;
+			free_envv(mini, env);
 			return (0);
 		}
-		env = env->next;
+		while (env && env->next)
+		{
+			if (!ft_strncmp(args[arg_nb], env->next->value, env_s(env->next->value)))
+			{
+				tmp = env->next->next;
+				free_envv(mini, env->next);
+				env->next = tmp;
+				return (0);
+			}
+			env = env->next;
+		}
+		unset_export(args, mini, arg_nb);
+		arg_nb++;
 	}
-	unset_export(args, mini, arg_nb);
 	return (0);
 }
