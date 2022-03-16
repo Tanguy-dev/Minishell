@@ -6,13 +6,13 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 11:38:35 by jusaint-          #+#    #+#             */
-/*   Updated: 2022/03/16 12:18:35 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/16 19:43:57 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	free_export(t_mini *mini, t_env *export)
+void	free_export(t_mini *mini, t_env *export)
 {
 	if (mini->export == export && export->next == NULL)
 	{
@@ -39,7 +39,7 @@ int	unset_export(char **args, t_mini *mini, int arg)
 
 	export = mini->export;
 	if (!(args[arg]) || export->value == NULL)
-		return (0);
+		return (1);
 	if (!ft_strncmp(args[arg], export->value, ft_strlen(args[arg])))
 	{
 		if (export->next)

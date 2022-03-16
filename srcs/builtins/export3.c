@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 11:32:39 by jusaint-          #+#    #+#             */
-/*   Updated: 2022/03/16 12:34:33 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/16 19:59:34 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	check_double(char *arg, t_env *export)
 		return (0);
 	tmp = export;
 	cmp = ft_strdup(arg);
+	while (tmp)
 	while (tmp)
 	{
 		if (!strncmp(cmp, tmp->value, ft_strlen(tmp->value)))
