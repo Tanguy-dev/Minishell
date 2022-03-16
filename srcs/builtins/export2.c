@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 06:50:04 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/14 14:27:49 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/15 17:31:41 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	ex_quote(char **args, int i, int j, int quotes)
 	return (quotes);
 }
 
-char	*ex_arg(char **args, char *arg)
+char	*ex_arg(char **args, char *arg, int arg_nb)
 {
 	int	i;
 	int	quotes;
@@ -56,7 +56,7 @@ char	*ex_arg(char **args, char *arg)
 	i = 1;
 	quotes = 0;
 	arg = malloc(sizeof(char) + 99999);
-	arg = args[1];
+	arg = args[arg_nb];
 	if (args > 0)
 	{
 		while (args[i])

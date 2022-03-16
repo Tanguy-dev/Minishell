@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:35:33 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/15 19:53:10 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/15 20:03:35 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ int				mini_echo(char **args);
 int				mini_env(t_env *env);
 int				mini_cd(char **args, t_env *env);
 int				mini_export(char **args, t_env *env, t_env *export);
-char			*ex_arg(char **args, char *arg);
+char			*ex_arg(char **args, char *arg, int arg_nb);
 int				exa(char **args, t_env *env, t_env *export);
 int				mini_unset(char **args, t_mini *mini);
 char			*get_path(t_env *env, char *var, size_t len);
