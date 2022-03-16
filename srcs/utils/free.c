@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 17:16:24 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/03 12:15:41 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/16 12:42:57 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,21 @@ void	free_env(t_env *env)
 	ft_memdel(env->value);
 	ft_memdel(env);
 	clear_history();
+}
+
+void	free_all_export(t_env *export)
+{
+	t_env	*tmp;
+
+	while (export->next)
+	{
+		tmp = export;
+		export = export->next;
+		ft_memdel(tmp->value);
+		ft_memdel(tmp);
+	}
+	ft_memdel(export->value);
+	ft_memdel(export);
 }
 
 void	free_array(char **array)

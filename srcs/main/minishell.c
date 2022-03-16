@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 12:46:05 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/14 18:12:50 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/16 12:42:32 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int	main(int ac, char **av, char **env)
 	mini.out = dup(STDOUT);
 	reset_fd(&mini);
 	set_env(&mini, env);
-/* init export to NULL in the structure */
 	mini.export = set_export(NULL);
 	while (mini.exit == 0)
 	{
@@ -95,6 +94,6 @@ int	main(int ac, char **av, char **env)
 			start(&mini);
 	}
 	free_env(mini.env);
-//	free_export	
+	free_all_export(mini.export);
 	return (mini.ret);
 }

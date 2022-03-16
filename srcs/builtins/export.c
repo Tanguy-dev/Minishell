@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:39:12 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/15 17:54:25 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/16 12:32:20 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,6 @@ int	env_add(char *value, t_env *env)
 	tmp = env->next;
 	env->next = new;
 	new->next = tmp;
-	return (0);
-}
-
-/* new function to add var that won't be in the env list, in the export list */
-
-int export_add(char *value, t_env *export)
-{
-	t_env *new_export;
-	t_env *tmp;
-
-	if (export->value == NULL)
-		export->value = ft_strdup(value);
-	else
-	{
-		new_export = malloc(sizeof(t_env));
-		new_export->value = ft_strdup(value);
-		while (export->next)
-			export = export->next;
-		tmp = export->next;
-		export->next = new_export;
-		new_export->next = tmp;
-	}
 	return (0);
 }
 
@@ -106,63 +84,6 @@ char	*name_env(char *dest, char *src)
 	return (dest);
 }
 
-/*
-int	mini_export(char **args, t_env *env, t_env *export)
-{
-	int		new_env;
-	int		error;
-	char	*arg;
-
-	new_env = 0;
-	arg = NULL;
-	if (exa(args, env, export))
-		return (0);
-	else
-	{
-		error = is_valid_env(args[1]);
-		if (args[1][0] == '=')
-			error = -3;
-		if (error <= 0)
-			return (show_error(error, args[1]));
-		arg = ex_arg(args, arg);
-		if (error == 2)
-			new_env = 1;
-		else
-			new_env = in_env(arg, env);
-		if (new_env == 0 && error == 1)
-			env_add(arg, env);
-// if var has no '=', add it to export only
-		if (new_env == 1 && error == 2)
-			export_add(arg, export);
-	}
-	return (0);
-}
-*/
-
-int	check_double(char *arg, t_env *export)
-{
-	t_env *tmp;
-	char *cmp;
-
-	if (export == NULL || export->value == NULL || arg == NULL)
-		return (0);
-	tmp = export;
-	cmp = ft_strdup(arg);
-	while (tmp)
-	{
-		if (!strncmp(cmp, tmp->value, ft_strlen(tmp->value)))
-		{
-			free(cmp);
-			return (1);
-		}
-		if (tmp->next == NULL)
-			break;
-		tmp = tmp->next;
-	}
-	free(cmp);
-	return (0);
-}
-
 int	mini_export(char **args, t_env *env, t_env *export)
 {
 	int		new_env;
@@ -170,8 +91,6 @@ int	mini_export(char **args, t_env *env, t_env *export)
 	char	*arg;
 	int		arg_nb;
 
-	new_env = 0;
-	arg = NULL;
 	arg_nb = 1;
 	if (exa(args, env, export))
 		return (0);
@@ -183,16 +102,12 @@ int	mini_export(char **args, t_env *env, t_env *export)
 		if (error <= 0)
 			return (show_error(error, args[arg_nb]));
 		arg = ex_arg(args, arg, arg_nb);
-		if (error == 2)
-			new_env = 1;
-		else
-			new_env = in_env(arg, env);
-		if (new_env == 0 && error == 1)
+		new_env = in_env(arg, env);
+		if (error == 1)
 			env_add(arg, env);
-		if (new_env == 1 && error == 2 && check_double(arg, export) == 0)
+		if (error == 2 && check_double(arg, export) == 0)
 			export_add(arg, export);
 		arg_nb++;
 	}
 	return (0);
 }
-
