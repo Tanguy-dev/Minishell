@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:39:12 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/16 16:54:37 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/17 16:46:08 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ char	*name_env(char *dest, char *src)
 	int	i;
 
 	i = 0;
-	while (src[i] && src[i] != '=' && src[i] != ' ' && ft_strlen(src) < BUF_SIZE)
+	while (src[i] && src[i] != '=' && src[i] != ' '
+		&& ft_strlen(src) < BUF_SIZE)
 	{
 		dest[i] = src[i];
 		i++;
