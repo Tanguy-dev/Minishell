@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 16:42:07 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/15 20:19:16 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/16 13:20:33 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ int	set_env(t_mini *mini, char **env)
 	}
 	return (0);
 }
-
-/* initialize export linked list */
 
 t_env	*set_export(char *value)
 {

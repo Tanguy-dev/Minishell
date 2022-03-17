@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:35:33 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/15 20:03:35 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/16 15:22:29 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,8 +145,10 @@ t_token			*prev_sep(t_token *token, int skip);
 int				tk(char *line, int i);
 char			token_test(char c, int *i, char *line);
 /*
-** ENV
+** ENV & EXPORT
 */
+int				export_add(char *value, t_env *export);
+int				check_double(char *arg, t_env *export);
 int				set_env(t_mini *mini, char **env);
 t_env			*set_export(char *value);
 char			*env_on_str(t_env *env);
@@ -161,6 +163,7 @@ char			*check_env(char *line);
 ** FREE
 */
 void			free_env(t_env *env);
+void			free_all_export(t_env *export);
 void			free_array(char **array);
 void			free_token(t_token *token);
 /*
@@ -192,6 +195,7 @@ int				mini_cd(char **args, t_env *env);
 int				mini_export(char **args, t_env *env, t_env *export);
 char			*ex_arg(char **args, char *arg, int arg_nb);
 int				exa(char **args, t_env *env, t_env *export);
+int				unset_export(char **args, t_mini *mini, int arg);
 int				mini_unset(char **args, t_mini *mini);
 char			*get_path(t_env *env, char *var, size_t len);
 char			*path2(char *env_path, t_env *env);

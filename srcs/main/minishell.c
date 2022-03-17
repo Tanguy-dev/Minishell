@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 12:46:05 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/15 20:19:03 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/16 14:27:17 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ int	main(int ac, char **av, char **env)
 			start(&mini);
 	}
 	free_env(mini.env);
+	free_all_export(mini.export);
 	return (mini.ret);
 }

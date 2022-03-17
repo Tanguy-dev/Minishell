@@ -5,7 +5,7 @@ PARSE		=	parse parse2 parse3 parse4 token token2 redir expansion expansion2
 ENV			=	env env_sort get_env
 UTILS		=	free type fd
 EXEC		=	bin bin2 exec builtins
-BUILTINS	=	echo cd cd_2 pwd export export2 env exit unset
+BUILTINS	=	echo cd cd_2 pwd export export2 export3 env exit unset unset2
 READL_PATH	=	-L$(shell brew --prefix readline)/lib
 
 SRCS		=	$(addsuffix .c, $(addprefix main/, $(MAIN)))	\

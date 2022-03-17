@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:38:53 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/16 11:30:15 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/16 14:24:13 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ static int	echo_arg(char **args, int *i, int n_flags)
 			if (args[*i][j] != 'n' && args[*i][j] != '\0')
 			{
 				j = 999999999;
+				if (*i == 1)
+					n_flags = 0;
 				break ;
 			}
 			n_flags = 1;
