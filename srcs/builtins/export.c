@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:39:12 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/17 15:20:57 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/17 16:54:18 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int	in_export(char **args, t_mini *mini, int arg_nb)
 	cmp = strchr_ret(args[arg_nb], '=');
 	if (cmp == NULL)
 		return (1);
+	if (ft_strlen(cmp) != ft_strlen(tmp->value))
+		return (1);
 	if (!ft_strncmp(cmp, tmp->value, ft_strlen(cmp)))
 	{
 		if (tmp->next)
@@ -79,8 +81,10 @@ int	in_export(char **args, t_mini *mini, int arg_nb)
 		free_export(mini, tmp);
 		return (0);
 	}
-	while (tmp)
+	while (tmp && tmp->next)
 	{
+		if (ft_strlen(cmp) != ft_strlen(tmp->value))
+			return (1);
 		if (!strncmp(cmp, tmp->next->value, ft_strlen(cmp)))
 		{
 			if (tmp->next->next == NULL)
