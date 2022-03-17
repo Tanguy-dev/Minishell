@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:35:33 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/17 16:59:12 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/17 19:08:59 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,11 @@ int				env_char(int c);
 int				is_valid_arg(t_token *token);
 void			multiple_arg(t_mini *mini);
 char			*check_env(char *line);
+int				export_search_destroy(char *cmp, t_mini *mini,
+					t_env *tmp, t_env *tmp_2);
+char			*strchr_ret(const char *str, char c);
+int				in_export(char **args, t_mini *mini, int arg_nb);
+
 /*
 ** FREE
 */
@@ -194,7 +199,8 @@ int				mini_pwd(t_env *env);
 int				mini_echo(char **args);
 int				mini_env(t_env *env);
 int				mini_cd(char **args, t_env *env);
-int				mini_export(char **args, t_mini *mini, t_env *env, t_env *export);
+int				mini_export(char **args, t_mini *mini, t_env *env,
+					t_env *export);
 char			*ex_arg(char **args, char *arg, int arg_nb);
 int				exa(char **args, t_env *env, t_env *export);
 int				unset_export(char **args, t_mini *mini, int arg);
