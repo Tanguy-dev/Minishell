@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:35:33 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/16 15:22:29 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/17 16:59:12 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,8 @@ void			free_env(t_env *env);
 void			free_all_export(t_env *export);
 void			free_array(char **array);
 void			free_token(t_token *token);
+void			free_export(t_mini *mini, t_env *export);
+int				last_export(t_mini *mini, t_env *export);
 /*
 ** FD
 */
@@ -192,7 +194,7 @@ int				mini_pwd(t_env *env);
 int				mini_echo(char **args);
 int				mini_env(t_env *env);
 int				mini_cd(char **args, t_env *env);
-int				mini_export(char **args, t_env *env, t_env *export);
+int				mini_export(char **args, t_mini *mini, t_env *env, t_env *export);
 char			*ex_arg(char **args, char *arg, int arg_nb);
 int				exa(char **args, t_env *env, t_env *export);
 int				unset_export(char **args, t_mini *mini, int arg);
