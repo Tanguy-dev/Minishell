@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 22:39:22 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/15 14:45:57 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/17 18:41:47 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void	sort_env(char **tabe, int env_len)
 		env_len--;
 	}
 }
-
-/* add export print to show_env */
 
 void	show_env(t_env *env, t_env *export)
 {

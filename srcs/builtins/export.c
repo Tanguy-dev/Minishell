@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:39:12 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/17 16:54:18 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/17 19:01:43 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,75 +29,6 @@ int	env_add(char *value, t_env *env)
 	tmp = env->next;
 	env->next = new;
 	new->next = tmp;
-	return (0);
-}
-
-char	*strchr_ret(const char *str, char c)
-{
-	size_t	len;
-	size_t	i;
-	char	*ret;
-
-	len = 0;
-	i = 0;
-	if (!str || !c)
-		return (NULL);
-	while (str[len] != '\0' && str[len] != '=')
-		len++;
-	if (len == ft_strlen(str))
-		return (NULL);
-	ret = malloc(sizeof(char) * (len + 1));
-	if (ret == NULL)
-		return (NULL);
-	while (i < len)
-	{
-		ret[i] = str[i];
-		i++;
-	}
-	ret[i] = '\0';
-	return (ret);	
-}
-
-int	in_export(char **args, t_mini *mini, int arg_nb)
-{
-	t_env	*tmp;
-	t_env	*tmp_2;
-	char	*cmp;
-	int		i;
-
-	tmp = mini->export;
-	i = 0;
-	if (!tmp || tmp->value == NULL)
-		return (1);
-	cmp = strchr_ret(args[arg_nb], '=');
-	if (cmp == NULL)
-		return (1);
-	if (ft_strlen(cmp) != ft_strlen(tmp->value))
-		return (1);
-	if (!ft_strncmp(cmp, tmp->value, ft_strlen(cmp)))
-	{
-		if (tmp->next)
-			mini->export = tmp->next;
-		free_export(mini, tmp);
-		return (0);
-	}
-	while (tmp && tmp->next)
-	{
-		if (ft_strlen(cmp) != ft_strlen(tmp->value))
-			return (1);
-		if (!strncmp(cmp, tmp->next->value, ft_strlen(cmp)))
-		{
-			if (tmp->next->next == NULL)
-				return (last_export(mini, tmp));
-			tmp_2 = tmp->next->next;
-			free_export(mini, tmp->next);
-			tmp->next = tmp_2;
-			free(cmp);
-			return (1);
-		}
-		tmp = tmp->next;
-	}
-	free(cmp);
 	return (0);
 }
 
@@ -146,8 +77,8 @@ char	*name_env(char *dest, char *src)
 	int	i;
 
 	i = 0;
-	while (src[i] && src[i] != '=' && ft_strlen(src) < BUF_SIZE 
-			&& src[i] != ' ')
+	while (src[i] && src[i] != '=' && ft_strlen(src) < BUF_SIZE
+		&& src[i] != ' ')
 	{
 		dest[i] = src[i];
 		i++;

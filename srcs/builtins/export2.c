@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 06:50:04 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/17 16:19:47 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/17 17:06:31 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ static int	ex_quote(char **args, int i, int j, int quotes)
 			quotes = 0;
 		j++;
 	}
-//	args[i][j] = ' ';
+	if (quotes == 1)
+		args[i][j] = ' ';
 	return (quotes);
 }
 
