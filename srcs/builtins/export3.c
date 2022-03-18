@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 11:32:39 by jusaint-          #+#    #+#             */
-/*   Updated: 2022/03/18 10:40:11 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/18 12:35:58 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	export_search_destroy(char *cmp, t_mini *mini, t_env *tmp, t_env *tmp_2)
 	}
 	while (tmp && tmp->next)
 	{
-		if (ft_strlen(cmp) != ft_strlen(tmp->value))
+		if (ft_strlen(cmp) != ft_strlen(tmp->next->value))
 			return (1);
 		if (!strncmp(cmp, tmp->next->value, ft_strlen(cmp)))
 		{

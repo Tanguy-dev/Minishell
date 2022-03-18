@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 14:36:46 by thamon            #+#    #+#             */
-/*   Updated: 2022/02/27 17:53:35 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/18 13:35:44 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ void	exec_cmd(t_mini *mini, t_token *token)
 	}
 	if (cmd && ft_strcmp(cmd[0], "exit") == 0 && its_pipe(token) == 0)
 		mini_exit(mini, cmd);
-	else if (cmd && is_builtins(cmd[0]))
-		mini->ret = exec_builtins(mini, cmd);
-	else if (cmd)
+	else if (cmd && is_builtins(cmd[0]) && ft_strcmp(cmd[0], "exit") != 0)
+		mini->ret = exec_builtins(mini, cmd, token);
+	else if (cmd && ft_strcmp(cmd[0], "exit") != 0)
 		mini->ret = exec_bin(cmd, mini, mini->env);
 	free_array(cmd);
 	ft_close(mini->pipin);
