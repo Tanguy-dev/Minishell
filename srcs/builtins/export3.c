@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 11:32:39 by jusaint-          #+#    #+#             */
-/*   Updated: 2022/03/18 12:35:58 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/18 14:18:24 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int	check_double(char *arg, t_env *export)
 
 int	export_search_destroy(char *cmp, t_mini *mini, t_env *tmp, t_env *tmp_2)
 {
-	if (!ft_strncmp(cmp, tmp->value, ft_strlen(cmp)))
+	if (ft_strlen(cmp) == ft_strlen(tmp->value)
+		&& !ft_strncmp(cmp, tmp->value, ft_strlen(cmp)))
 	{
 		if (tmp->next)
 			mini->export = tmp->next;
@@ -68,9 +69,8 @@ int	export_search_destroy(char *cmp, t_mini *mini, t_env *tmp, t_env *tmp_2)
 	}
 	while (tmp && tmp->next)
 	{
-		if (ft_strlen(cmp) != ft_strlen(tmp->next->value))
-			return (1);
-		if (!strncmp(cmp, tmp->next->value, ft_strlen(cmp)))
+		if (ft_strlen(cmp) == ft_strlen(tmp->next->value)
+			&& !strncmp(cmp, tmp->next->value, ft_strlen(cmp)))
 		{
 			if (tmp->next->next == NULL)
 				return (last_export(mini, tmp));
@@ -98,8 +98,6 @@ int	in_export(char **args, t_mini *mini, int arg_nb)
 		return (1);
 	cmp = strchr_ret(args[arg_nb], '=');
 	if (cmp == NULL)
-		return (1);
-	if (ft_strlen(cmp) != ft_strlen(tmp->value))
 		return (1);
 	if (export_search_destroy(cmp, mini, tmp, tmp_2) == 1)
 		return (1);

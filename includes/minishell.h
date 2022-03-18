@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:35:33 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/18 13:05:40 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/18 14:01:54 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@
 # include <termios.h>
 # include <sys/syslimits.h>
 # include "../libft/includes/libft.h"
-/* Pour Mac Tanguy */
+/* Pour Mac Tanguy *//*
 # include "/opt/homebrew/Cellar/readline/8.1.2/include/readline/readline.h"
 # include "/opt/homebrew/Cellar/readline/8.1.2/include/readline/rlstdc.h"
-# include "/opt/homebrew/Cellar/readline/8.1.2/include/readline/history.h"
-// # include "/Users/jusaint-/.brew/opt/readline/include/readline/readline.h"
-// # include "/Users/jusaint-/.brew/opt/readline/include/readline/rlstdc.h"
-// # include "/Users/jusaint-/.brew/opt/readline/include/readline/history.h"
+# include "/opt/homebrew/Cellar/readline/8.1.2/include/readline/history.h"*/
+# include "/Users/jusaint-/.brew/opt/readline/include/readline/readline.h"
+# include "/Users/jusaint-/.brew/opt/readline/include/readline/rlstdc.h"
+# include "/Users/jusaint-/.brew/opt/readline/include/readline/history.h"
 
 # define PROMPT "👍 \033[0;32m\033[1mMinishell : \033[0m"
 # define ERROR_PROMPT "👎 \033[0;32m\033[1mMinishell : \033[0m"
@@ -195,7 +195,7 @@ int				exec_builtins(t_mini *mini, char **cmd, t_token *token);
 int				env_add(char *value, t_env *env);
 char			*name_env(char *dest, char *src);
 int				in_env(char *args, t_env *env);
-void			mini_exit(t_mini *mini, char **cmd);
+int				mini_exit(t_mini *mini, char **cmd);
 int				mini_pwd(t_env *env);
 int				mini_echo(char **args);
 int				mini_env(t_env *env);

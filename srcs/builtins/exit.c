@@ -6,13 +6,13 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 16:15:21 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/18 13:45:40 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/18 14:01:31 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	mini_exit(t_mini *mini, char **cmd)
+int	mini_exit(t_mini *mini, char **cmd)
 {
 	mini->exit = 1;
 	ft_putendl_fd("exit", STDERR);
