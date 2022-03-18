@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 11:32:39 by jusaint-          #+#    #+#             */
-/*   Updated: 2022/03/17 19:01:24 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/18 10:40:11 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	check_double(char *arg, t_env *export)
 	cmp = ft_strdup(arg);
 	while (tmp)
 	{
-		if (!strncmp(cmp, tmp->value, ft_strlen(tmp->value)))
+		if (compare_len(cmp, tmp->value) == 0
+			&& !strncmp(cmp, tmp->value, ft_strlen(tmp->value)))
 		{
 			free(cmp);
 			return (1);
@@ -100,6 +101,7 @@ int	in_export(char **args, t_mini *mini, int arg_nb)
 		return (1);
 	if (ft_strlen(cmp) != ft_strlen(tmp->value))
 		return (1);
-	export_search_destroy(cmp, mini, tmp, tmp_2);
+	if (export_search_destroy(cmp, mini, tmp, tmp_2) == 1)
+		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 12:46:05 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/17 16:58:59 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/18 10:43:57 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int	main(int ac, char **av, char **env)
 
 	(void)ac;
 	(void)av;
+	if (env[0] == NULL)
+		return (0);
 	ft_bzero(&mini, sizeof(t_mini));
 	mini.in = dup(STDIN);
 	mini.out = dup(STDOUT);

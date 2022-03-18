@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:39:25 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/16 13:20:55 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/18 10:19:50 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,14 @@ static void	free_envv(t_mini *mini, t_env *env)
 	ft_memdel(env);
 }
 
-int	unset_env(char **args, t_mini *mini, int arg)
+int	unset_env(char **args, t_mini *mini, int nb)
 {
 	t_env	*env;
 	t_env	*tmp;
 
 	env = mini->env;
-	if (!ft_strncmp(args[arg], env->value, env_s(env->value)))
+	if (compare_len(env->value, args[nb]) == 0
+		&& !ft_strncmp(args[nb], env->value, env_s(env->value)))
 	{
 		if (env->next)
 			mini->env = env->next;
@@ -50,7 +51,8 @@ int	unset_env(char **args, t_mini *mini, int arg)
 	}
 	while (env && env->next)
 	{
-		if (!ft_strncmp(args[arg], env->next->value, env_s(env->next->value)))
+		if (compare_len(env->value, args[nb]) == 0
+			&& !ft_strncmp(args[nb], env->next->value, env_s(env->next->value)))
 		{
 			tmp = env->next->next;
 			free_envv(mini, env->next);

@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:35:33 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/17 19:08:59 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/18 10:04:19 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,13 @@
 # include <termios.h>
 # include <sys/syslimits.h>
 # include "../libft/includes/libft.h"
-/* Pour Mac Ecole */
-// # include "../../../.brew/opt/readline/include/readline/readline.h"
-// # include "../../../.brew/opt/readline/include/readline/rlstdc.h"
-// # include "../../../.brew/opt/readline/include/readline/history.h"
 /* Pour Mac Tanguy */
-# include "/opt/homebrew/Cellar/readline/8.1.2/include/readline/readline.h"
+/*# include "/opt/homebrew/Cellar/readline/8.1.2/include/readline/readline.h"
 # include "/opt/homebrew/Cellar/readline/8.1.2/include/readline/rlstdc.h"
-# include "/opt/homebrew/Cellar/readline/8.1.2/include/readline/history.h"
+# include "/opt/homebrew/Cellar/readline/8.1.2/include/readline/history.h"*/
+# include "/Users/jusaint-/.brew/opt/readline/include/readline/readline.h"
+# include "/Users/jusaint-/.brew/opt/readline/include/readline/rlstdc.h"
+# include "/Users/jusaint-/.brew/opt/readline/include/readline/history.h"
 
 # define PROMPT "👍 \033[0;32m\033[1mMinishell : \033[0m"
 # define ERROR_PROMPT "👎 \033[0;32m\033[1mMinishell : \033[0m"
@@ -163,6 +162,7 @@ int				export_search_destroy(char *cmp, t_mini *mini,
 					t_env *tmp, t_env *tmp_2);
 char			*strchr_ret(const char *str, char c);
 int				in_export(char **args, t_mini *mini, int arg_nb);
+int				compare_len(char *arg_to_cat, char *value);
 
 /*
 ** FREE

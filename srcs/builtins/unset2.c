@@ -6,7 +6,7 @@
 /*   By: jusaint- <jusaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 11:38:35 by jusaint-          #+#    #+#             */
-/*   Updated: 2022/03/16 19:43:57 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/18 10:40:40 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,44 @@ int	last_export(t_mini *mini, t_env *export)
 	return (0);
 }
 
-int	unset_export(char **args, t_mini *mini, int arg)
+int	compare_len(char *arg_to_cat, char *value)
 {
-	t_env	*tmp;
-	t_env	*export;
+	char	*cmp;
 
-	export = mini->export;
-	if (!(args[arg]) || export->value == NULL)
+	cmp = strchr_ret(arg_to_cat, '=');
+	if (cmp == NULL)
+		cmp = arg_to_cat;
+	if (ft_strlen(cmp) == ft_strlen(value))
+		return (0);
+	else
 		return (1);
-	if (!ft_strncmp(args[arg], export->value, ft_strlen(args[arg])))
+}
+
+int	one_export(char **args, t_mini *mini, t_env *export, int nb)
+{
+	if (compare_len(args[nb], export->value) == 0
+		&& !ft_strncmp(args[nb], export->value, ft_strlen(args[nb])))
 	{
 		if (export->next)
 			mini->export = export->next;
 		free_export(mini, export);
 	}
+	return (0);
+}
+
+int	unset_export(char **args, t_mini *mini, int nb)
+{
+	t_env	*tmp;
+	t_env	*export;
+
+	export = mini->export;
+	if (!(args[nb]) || export->value == NULL)
+		return (1);
+	one_export(args, mini, export, nb);
 	while (export && export->next && export->value != NULL)
 	{
-		if (!ft_strncmp(args[arg], export->next->value, ft_strlen(args[arg])))
+		if (compare_len(args[nb], export->next->value) == 0
+			&& !ft_strncmp(args[nb], export->next->value, ft_strlen(args[nb])))
 		{
 			if (export->next->next == NULL)
 				return (last_export(mini, export));
