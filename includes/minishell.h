@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:35:33 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/18 10:04:19 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/18 11:55:00 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ int				export_search_destroy(char *cmp, t_mini *mini,
 char			*strchr_ret(const char *str, char c);
 int				in_export(char **args, t_mini *mini, int arg_nb);
 int				compare_len(char *arg_to_cat, char *value);
+char			*name_env(char *dest, char *src);
 
 /*
 ** FREE

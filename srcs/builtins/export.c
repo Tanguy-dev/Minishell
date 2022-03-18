@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:39:12 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/17 19:06:26 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/18 11:56:35 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,26 +72,25 @@ static int	show_error(int error, char *args)
 	return (1);
 }
 
-char	*name_env(char *dest, char *src)
+int	mini_export2(char **args, t_mini *mini, int arg_nb, int error)
 {
-	int	i;
+	char	*arg;
+	int		new_env;
 
-	i = 0;
-	while (src[i] && src[i] != '=' && ft_strlen(src) < BUF_SIZE
-		&& src[i] != ' ')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
+	arg = NULL;
+	in_export(args, mini, arg_nb);
+	arg = ex_arg(args, arg, arg_nb);
+	new_env = in_env(arg, mini->env);
+	if (error == 1 && new_env == 0)
+		env_add(arg, mini->env);
+	if (error == 2 && new_env == 0 && check_double(arg, mini->export) == 0)
+		export_add(arg, mini->export);
+	return (0);
 }
 
 int	mini_export(char **args, t_mini *mini, t_env *env, t_env *export)
 {
-	int		new_env;
 	int		error;
-	char	*arg;
 	int		arg_nb;
 
 	arg_nb = 1;
@@ -103,14 +102,9 @@ int	mini_export(char **args, t_mini *mini, t_env *env, t_env *export)
 		if (args[arg_nb][0] == '=')
 			error = -3;
 		if (error <= 0)
-			return (show_error(error, args[arg_nb]));
-		in_export(args, mini, arg_nb);
-		arg = ex_arg(args, arg, arg_nb);
-		new_env = in_env(arg, env);
-		if (error == 1 && new_env == 0)
-			env_add(arg, env);
-		if (error == 2 && new_env == 0 && check_double(arg, export) == 0)
-			export_add(arg, export);
+			show_error(error, args[arg_nb]);
+		else
+			mini_export2(args, mini, arg_nb, error);
 		arg_nb++;
 	}
 	return (0);

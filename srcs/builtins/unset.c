@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:39:25 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/18 10:19:50 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/18 11:08:44 by jusaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	unset_env(char **args, t_mini *mini, int nb)
 	}
 	while (env && env->next)
 	{
-		if (compare_len(env->value, args[nb]) == 0
+		if (compare_len(env->next->value, args[nb]) == 0
 			&& !ft_strncmp(args[nb], env->next->value, env_s(env->next->value)))
 		{
 			tmp = env->next->next;
