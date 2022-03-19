@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 16:15:21 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/18 14:01:31 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/19 19:00:36 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,5 @@ int	mini_exit(t_mini *mini, char **cmd)
 	}
 	else if (cmd[1])
 		mini->ret = ft_atoi(cmd[1]);
-	else
-		mini->ret = 0;
 	return (mini->ret);
 }

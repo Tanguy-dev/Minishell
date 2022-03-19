@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 16:51:49 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/16 11:33:46 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/19 17:42:53 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,14 @@ char	*test1(t_mini *mini)
 	return (PROMPT);
 }
 
-static void	parse3(t_mini *mini, char *line, t_token *token)
+void	parse3(t_mini *mini, char *line, t_token *token)
 {
+	if (mini->check == 1)
+	{
+		mini->check = 0;
+		line = check_env(line);
+	}
+	token = mini->token;
 	add_history(line);
 	ft_memdel(line);
 	multiple_arg(mini);
@@ -83,6 +89,7 @@ void	parse(t_mini *mini)
 	char		*line;
 	t_token		*token;
 
+	token = NULL;
 	signal(SIGINT, &sig_int);
 	signal(SIGQUIT, &sig_quit);
 	line = readline(test1(mini));
@@ -90,19 +97,16 @@ void	parse(t_mini *mini)
 	{
 		ft_memdel(line);
 		ft_putendl_fd("exit", STDERR);
-		exit(0);
+		mini->exit = 1;
+	}
+	else
+	{
+		if (check_quote(mini, line))
+			return ;
+		line = find_lim(line, mini, mini->env);
+		mini->token = get_token(line);
+		parse3(mini, line, token);
 	}
 	if (g_sig.sigint == 1)
-		mini->ret = g_sig.exit_status;
-	if (check_quote(mini, line))
-		return ;
-	line = find_lim(line, mini, mini->env);
-	mini->token = get_token(line);
-	if (mini->check == 1)
-	{
-		mini->check = 0;
-		line = check_env(line);
-	}
-	token = mini->token;
-	parse3(mini, line, token);
+			mini->ret = g_sig.exit_status;
 }

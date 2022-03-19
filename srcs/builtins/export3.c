@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 11:32:39 by jusaint-          #+#    #+#             */
-/*   Updated: 2022/03/18 14:18:24 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/19 18:54:51 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,17 @@ int	in_export(char **args, t_mini *mini, int arg_nb)
 	if (export_search_destroy(cmp, mini, tmp, tmp_2) == 1)
 		return (1);
 	return (0);
+}
+
+int	export_quotes(char **args, int arg_nb, int quotes, int i)
+{
+	while (args[arg_nb][i])
+	{
+		if (args[arg_nb][i] == '\"' && quotes == 0)
+			quotes = 1;
+		else if (args[arg_nb][i] == '\"' && quotes == 1)
+			quotes = 0;
+		i++;
+	}
+	return (quotes);
 }

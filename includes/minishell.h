@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:35:33 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/18 14:01:54 by jusaint-         ###   ########.fr       */
+/*   Updated: 2022/03/19 18:55:06 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@
 # include <termios.h>
 # include <sys/syslimits.h>
 # include "../libft/includes/libft.h"
-/* Pour Mac Tanguy *//*
+/* Pour Mac Tanguy */
 # include "/opt/homebrew/Cellar/readline/8.1.2/include/readline/readline.h"
 # include "/opt/homebrew/Cellar/readline/8.1.2/include/readline/rlstdc.h"
-# include "/opt/homebrew/Cellar/readline/8.1.2/include/readline/history.h"*/
-# include "/Users/jusaint-/.brew/opt/readline/include/readline/readline.h"
-# include "/Users/jusaint-/.brew/opt/readline/include/readline/rlstdc.h"
-# include "/Users/jusaint-/.brew/opt/readline/include/readline/history.h"
+# include "/opt/homebrew/Cellar/readline/8.1.2/include/readline/history.h"
+// # include "/Users/jusaint-/.brew/opt/readline/include/readline/readline.h"
+// # include "/Users/jusaint-/.brew/opt/readline/include/readline/rlstdc.h"
+// # include "/Users/jusaint-/.brew/opt/readline/include/readline/history.h"
 
 # define PROMPT "👍 \033[0;32m\033[1mMinishell : \033[0m"
 # define ERROR_PROMPT "👎 \033[0;32m\033[1mMinishell : \033[0m"
@@ -97,6 +97,7 @@ typedef struct s_mini
 	int					end;
 	int					check;
 	int					echo;
+	int					val_ex;
 }				t_mini;
 
 typedef struct s_sig
@@ -164,7 +165,7 @@ char			*strchr_ret(const char *str, char c);
 int				in_export(char **args, t_mini *mini, int arg_nb);
 int				compare_len(char *arg_to_cat, char *value);
 char			*name_env(char *dest, char *src);
-
+int				export_quotes(char **args, int arg_nb, int quotes, int i);
 /*
 ** FREE
 */
@@ -200,7 +201,7 @@ int				mini_pwd(t_env *env);
 int				mini_echo(char **args);
 int				mini_env(t_env *env);
 int				mini_cd(char **args, t_env *env);
-int				mini_export(char **args, t_mini *mini, t_env *env,
+void			mini_export(char **args, t_mini *mini, t_env *env,
 					t_env *export);
 char			*ex_arg(char **args, char *arg, int arg_nb);
 int				exa(char **args, t_env *env, t_env *export);

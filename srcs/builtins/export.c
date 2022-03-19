@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:39:12 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/18 12:27:29 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/19 19:18:05 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	in_env(char *args, t_env *env)
 	return (0);
 }
 
-static int	show_error(int error, char *args)
+static int	show_error(int error, char *args, t_mini *mini)
 {
 	int	i;
 
@@ -69,6 +69,8 @@ static int	show_error(int error, char *args)
 		i++;
 	}
 	ft_putchar_fd('\n', STDERR);
+	mini->ret = 1;
+	mini->val_ex = 1;
 	return (1);
 }
 
@@ -85,27 +87,36 @@ int	mini_export2(char **args, t_mini *mini, int arg_nb, int error)
 		env_add(arg, mini->env);
 	if (error == 2 && new_env == 0 && check_double(arg, mini->export) == 0)
 		export_add(arg, mini->export);
+	if (mini->val_ex == 0)
+		mini->ret = 0;
 	return (0);
 }
 
-int	mini_export(char **args, t_mini *mini, t_env *env, t_env *export)
+void	mini_export(char **args, t_mini *mini, t_env *env, t_env *export)
 {
-	int		error;
-	int		arg_nb;
+	int	error;
+	int	arg_nb;
+	int	quotes;
+	int	i;
 
 	arg_nb = 1;
+	quotes = 0;
+	mini->ret = 0;
 	if (exa(args, env, export))
-		return (0);
+		return ;
 	while (args[arg_nb])
 	{
-		error = is_valid_env(args[arg_nb]);
-		if (args[arg_nb][0] == '=')
-			error = -3;
-		if (error <= 0)
-			show_error(error, args[arg_nb]);
-		else
-			mini_export2(args, mini, arg_nb, error);
-		arg_nb++;
+		i = 0;
+		if (quotes == 0)
+		{
+			error = is_valid_env(args[arg_nb]);
+			if (args[arg_nb][0] == '=')
+				error = -3;
+			if (error <= 0)
+				show_error(error, args[arg_nb], mini);
+			else
+				mini_export2(args, mini, arg_nb, error);
+		}
+		quotes = export_quotes(args, arg_nb++, quotes, i);
 	}
-	return (0);
 }

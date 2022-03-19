@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 12:46:05 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/18 13:34:48 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/19 18:57:34 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	main(int ac, char **av, char **env)
 	{
 		ft_bzero(&g_sig, sizeof(t_sig));
 		parse(&mini);
-		if (mini.token && check_line(&mini, mini.token))
+		if (mini.token && check_line(&mini, mini.token) && mini.exit == 0)
 			start(&mini);
 	}
 	free_env(mini.env);

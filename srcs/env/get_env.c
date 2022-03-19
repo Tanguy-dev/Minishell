@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 22:52:07 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/17 19:08:19 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/19 19:10:24 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ int	is_valid_env(char *env)
 	int	i;
 
 	i = 0;
-	if (ft_isdigit(env[i]) == 1)
+	if (ft_isdigit(env[i]) == 1 || ft_isalnum(env[i]) == 0)
 		return (0);
 	while (env[i] && env[i] != '=')
 	{
-		if (ft_isalnum(env[i]) == 0)
-			return (-1);
+		if (ft_isalnum(env[i]) == 0 && env[i] != '\"')
+			return (0);
 		i++;
 	}
 	if (env[i] != '=')
