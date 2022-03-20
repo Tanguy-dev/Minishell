@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 13:35:33 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/19 18:55:06 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/20 16:41:23 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ char			*strchr_ret(const char *str, char c);
 int				in_export(char **args, t_mini *mini, int arg_nb);
 int				compare_len(char *arg_to_cat, char *value);
 char			*name_env(char *dest, char *src);
-int				export_quotes(char **args, int arg_nb, int quotes, int i);
+int				export_quotes(char **args, int arg_nb, int quotes);
 /*
 ** FREE
 */

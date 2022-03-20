@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:39:12 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/19 19:18:05 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/20 16:44:08 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ void	mini_export(char **args, t_mini *mini, t_env *env, t_env *export)
 	int	error;
 	int	arg_nb;
 	int	quotes;
-	int	i;
 
 	arg_nb = 1;
 	quotes = 0;
@@ -106,7 +105,6 @@ void	mini_export(char **args, t_mini *mini, t_env *env, t_env *export)
 		return ;
 	while (args[arg_nb])
 	{
-		i = 0;
 		if (quotes == 0)
 		{
 			error = is_valid_env(args[arg_nb]);
@@ -117,6 +115,6 @@ void	mini_export(char **args, t_mini *mini, t_env *env, t_env *export)
 			else
 				mini_export2(args, mini, arg_nb, error);
 		}
-		quotes = export_quotes(args, arg_nb++, quotes, i);
+		quotes = export_quotes(args, arg_nb++, quotes);
 	}
 }
