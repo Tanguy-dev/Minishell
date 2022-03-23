@@ -6,7 +6,7 @@
 /*   By: thamon <thamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:39:02 by thamon            #+#    #+#             */
-/*   Updated: 2022/03/20 17:15:09 by thamon           ###   ########.fr       */
+/*   Updated: 2022/03/23 15:24:57 by thamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ static int	update_path(t_env *env)
 	if (getcwd(pwd, PATH_MAX) == NULL)
 		return (1);
 	new = ft_strjoin("PWD=", pwd);
-	while (ft_strncmp(env->value, "PWD=", 4))
+	if (new == NULL)
+		return (1);
+	while (ft_strncmp(env->value, "PWD=", 4) && env->next)
 		env = env->next;
 	env->value = new;
 	return (0);
